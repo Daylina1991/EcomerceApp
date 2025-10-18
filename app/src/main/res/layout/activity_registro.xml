@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_gravity="center"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@android:color/white"
-    tools:context="RegistroActivity">
+    android:background="@color/gray"
+    tools:context=".RegistroActivity">
 
     <TextView
         android:id="@+id/textBienvenida"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="60sp"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="16dp"
-        tools:text="Bienvenido/a"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:layout_gravity="center"/>
+        android:text="Bienvenido/a"
+        android:textSize="24sp"
+        android:layout_marginTop="32dp"
+        android:gravity="center" />
 
-    <EditText
-        android:id="@+id/editTextUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Usuario"
-        android:inputType="textPersonName"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
 
 </LinearLayout>

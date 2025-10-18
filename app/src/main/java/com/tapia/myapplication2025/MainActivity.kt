@@ -19,37 +19,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState) //punto de partida oncreate
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater) //
-
         //setContentView(R.layout.activity_main)//relaciona la vista
         setContentView(binding.root)//relaciona directorio completo
 
-        val editTextnombre = findViewById<EditText>(R.id.editTextnombre)
-        val editTextcontrasena = findViewById<EditText>(R.id.editTextcontrasena)
-        val botonacceso = findViewById<Button>(R.id.botonacceso)
-        val botonregistro = findViewById<Button>(R.id.botonregistro)
-
-
-        botonacceso.setOnClickListener {
-            val nombre = editTextnombre.text.toString()
-            val contrasena = editTextcontrasena.text.toString()
-
+        binding.botonacceso.setOnClickListener {
             validateData()
 
-
-
+        }
+        binding.enlaceRegistro.setOnClickListener {
+            val intent = Intent(this, RegistroActivity::class.java)
+            startActivity(intent)
         }
 
     }
 
     fun validateData () {
-        val nombreBinding = binding.editTextnombre.text.toString()
-        val contrasenaBinding = binding.editTextcontrasena.text.toString()
+        val nombreBinding = binding.editTextnombre.text.toString().trim()
+        val contrasenaBinding = binding.editTextcontrasena.text.toString().trim()
 
         if (nombreBinding.isNotEmpty() && contrasenaBinding.isNotEmpty()){
             //Toast.makeText(this, "Bievenida  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
-            val intent = Intent(this,RegistroActivity::class.java) //intent relaciona entre activitys explicito
-            intent.putExtra( "username",nombreBinding)//navega hasta id xml
-            intent.putExtra("usercontrasena", contrasenaBinding.toInt())
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.putExtra( "username",nombreBinding)
+            intent.putExtra("usercontrasena", contrasenaBinding.toString())
             startActivity(intent)
 
         } else {
