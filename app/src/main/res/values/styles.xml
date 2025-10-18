@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Estilo personalizado para los campos de entrada -->
+    <style name="Widget.Custom.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/inputStrokeColor</item>         <!-- Color del borde activo -->
+        <item name="hintTextColor">@color/inputHintColor</item>            <!-- Color del hint -->
+        <item name="android:textColor">@color/inputTextColor</item>        <!-- Color del texto -->
+        <item name="boxBackgroundColor">@android:color/transparent</item>  <!-- Fondo transparente -->
+    </style>
+
+</resources>
