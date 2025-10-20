@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater) //
         //setContentView(R.layout.activity_main)//relaciona la vista
         setContentView(binding.root)//relaciona directorio completo
-
+         // boton de acceso
         binding.botonacceso.setOnClickListener {
             validateData()
 
-        }
+        } //enlace de registro
         binding.enlaceRegistro.setOnClickListener {
             val intent = Intent(this, RegistroActivity::class.java)
             startActivity(intent)

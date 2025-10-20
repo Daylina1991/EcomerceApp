@@ -7,7 +7,7 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/black"
+    android:background="@color/grisoscuro"
     android:padding="24dp">
 
     <TextView
@@ -52,7 +52,6 @@
             android:id="@+id/editTextcontrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.Custom.TextInputLayout"
             android:inputType="textPassword"
             android:textSize="18sp"
             android:maxLength="15" />
@@ -66,9 +65,9 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="@color/grisoscuro"
         android:textColor="@color/white"
-        android:text="Iniciar Sesión" />
+        android:text="@string/login_button"
+        android:backgroundTint="@color/black"/>
 
     <TextView
         android:id="@+id/enlaceRegistro"
@@ -80,10 +79,5 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_gravity="center" />
-
-
-
-
-
 
 </LinearLayout>

@@ -18,10 +18,6 @@
             android:name=".RegistroActivity"
             android:exported="false" />
         <activity
-            android:name=".InicioActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MyApplication2025" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
