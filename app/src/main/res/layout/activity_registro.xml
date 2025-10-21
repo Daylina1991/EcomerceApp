@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center"
-    android:background="@color/grisoscuro">
+    android:background="@drawable/fondo_degradado">
 
     <TextView
         android:id="@+id/textRegistro"
@@ -21,12 +21,12 @@
     <!-- Nombre -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilNombre"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Nombre"
-        app:startIconDrawable="@drawable/ic_person" >
+        app:startIconDrawable="@drawable/ic_person"
+        style="@style/Widget.Custom.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextNombre"
@@ -38,12 +38,12 @@
     <!-- Mail -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilEmail"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="Correo electrónico"
-        app:startIconDrawable="@drawable/ic_email" >
+        app:startIconDrawable="@drawable/ic_email"
+        style="@style/Widget.Custom.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextEmail"
@@ -55,13 +55,13 @@
     <!-- Contraseña -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilContrasena"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:hint="Contraseña"
         app:startIconDrawable="@drawable/ic_lock"
-        app:endIconMode="password_toggle" >
+        app:endIconMode="password_toggle"
+        style="@style/Widget.Custom.TextInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextContrasena"
@@ -71,10 +71,12 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- idbotonRegistro relaciona en el activity registro-->
     <Button
         android:id="@+id/botonRegistro"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:text="Registrar Cuenta"
         android:backgroundTint="@color/black"
         android:textColor="@android:color/white" />

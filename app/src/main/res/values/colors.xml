@@ -10,7 +10,7 @@
     <color name="backgroundColor">#F5F5F5</color>
     <color name="grisoscuro">#333333</color>
     <color name="sombra">#80000000</color>
-    <color name="inputStrokeColor">#EF5350</color>
+    <color name="inputStrokeColor">#D3D3D3</color>
     <color name="inputHintColor">#BDBDBD</color>
     <color name="inputTextColor">#FFFFFF</color>
 </resources>

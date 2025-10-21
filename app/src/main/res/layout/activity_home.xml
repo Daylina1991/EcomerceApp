@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center"
-    android:background="@color/white">
+    android:background="@color/grisoscuro">
 
     <TextView
         android:id="@+id/textBienvenida"

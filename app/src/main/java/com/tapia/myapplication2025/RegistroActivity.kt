@@ -33,7 +33,8 @@ class RegistroActivity : AppCompatActivity() {
         val contrasenaBinding = binding.editTextContrasena.text.toString().trim()
 
         if (nombreBinding.isNotEmpty() && mailBinding.isNotEmpty() &&contrasenaBinding.isNotEmpty() ){
-            Toast.makeText(this, "Bienvenida  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
+            Toast.makeText(this, "Bien" +
+                    "venida  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
 
             val intent = Intent(this, HomeActivity::class.java)
             intent.putExtra( "username",nombreBinding)

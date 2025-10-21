@@ -7,20 +7,21 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/grisoscuro"
+    android:background="@drawable/fondo_degradado"
     android:padding="24dp">
 
-    <TextView
-        android:id="@+id/textoBienvenida"
-        android:textSize="30sp"
-        android:textStyle="italic"
-        android:layout_marginBottom="32dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_message"
-        android:textColor="@color/white"
-        android:layout_gravity="center" />
+    <ImageView
+        android:id="@+id/logoApp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/logo_app"
+        android:contentDescription="@string/logo_descripcion"
+        android:scaleType="centerInside" />
 
+
+    <!-- usuario -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,6 +62,7 @@
 
 
     <Button
+
         android:id="@+id/botonacceso"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
