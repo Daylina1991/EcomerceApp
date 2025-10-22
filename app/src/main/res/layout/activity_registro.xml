@@ -14,9 +14,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registro de Usuario"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:layout_marginBottom="80dp"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/black"/>
 
     <!-- Nombre -->
     <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +59,7 @@
         android:id="@+id/tilContrasena"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="60dp"
         android:hint="Contraseña"
         app:startIconDrawable="@drawable/ic_lock"
         app:endIconMode="password_toggle"
@@ -67,7 +69,6 @@
             android:id="@+id/editTextContrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="80dp"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -77,8 +78,8 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:text="Registrar Cuenta"
         android:backgroundTint="@color/black"
+        android:text="Registrar Cuenta"
         android:textColor="@android:color/white" />
 
 </LinearLayout>
