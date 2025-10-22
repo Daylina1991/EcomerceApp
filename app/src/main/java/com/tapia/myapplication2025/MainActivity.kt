@@ -37,16 +37,27 @@ class MainActivity : AppCompatActivity() {
         val nombreBinding = binding.editTextnombre.text.toString().trim()
         val contrasenaBinding = binding.editTextcontrasena.text.toString().trim()
 
-        if (nombreBinding.isNotEmpty() && contrasenaBinding.isNotEmpty()){
-            //Toast.makeText(this, "Bievenida  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
+        if (nombreBinding.isNotBlank() && contrasenaBinding.isNotEmpty()){
+            val preferences = getSharedPreferences("CREDENCIALES", MODE_PRIVATE)
+            val edit = preferences.edit()
+
+            edit.putString("nombre", nombreBinding)
+            edit.putString("contrasena", contrasenaBinding)
+            edit.apply()
+
+            Toast.makeText(this, "Bievenida  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
             val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra( "username",nombreBinding)
-            intent.putExtra("usercontrasena", contrasenaBinding.toString())
+            intent.putExtra( "nombre",nombreBinding)
+            intent.putExtra("contrasena", contrasenaBinding.toString())
             startActivity(intent)
+            finish()
 
         } else {
             Toast.makeText(this, "¡Complete todos  los campos!",  Toast.LENGTH_LONG).show()
 
         }
+    }
+    companion object {
+        val CREDENCIALES = "CREDENCIALES"
     }
 }

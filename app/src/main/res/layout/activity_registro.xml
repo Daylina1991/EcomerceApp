@@ -69,17 +69,29 @@
             android:id="@+id/editTextContrasena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:maxLength="8"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- idbotonRegistro relaciona en el activity registro-->
+    <CheckBox
+        android:id="@+id/cbAceptarTerminos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="He leído y acepto los Términos y Condiciones"
+        android:layout_gravity="start"
+        android:layout_marginBottom="25dp"
+        android:buttonTint="@color/black"/>
+
+
+    <!--relaciona en el activity registro-->
     <Button
         android:id="@+id/botonRegistro"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:backgroundTint="@color/black"
-        android:text="Registrar Cuenta"
+        android:textSize="16sp"
+        android:text="@string/boton_registrar_cuenta"
         android:textColor="@android:color/white" />
 
 </LinearLayout>

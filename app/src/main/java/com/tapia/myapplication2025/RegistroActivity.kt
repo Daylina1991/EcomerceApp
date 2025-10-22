@@ -3,6 +3,7 @@ package com.tapia.myapplication2025
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.tapia.myapplication2025.databinding.ActivityRegistroBinding
@@ -27,25 +28,46 @@ class RegistroActivity : AppCompatActivity() {
             //val password = binding.editTextContrasenaRegistro.text.toString().trim()
     }
 
-    fun validateData () {
-        val nombreBinding = binding.editTextNombre.text.toString().trim()
-        val mailBinding = binding.editTextEmail.text.toString().trim()
-        val contrasenaBinding = binding.editTextContrasena.text.toString().trim()
+    fun validateData () {//.ttrimborra espacios
+        val nombre = binding.editTextNombre.text.toString().trim()
+        val mail = binding.editTextEmail.text.toString().trim()
+        val contrasena = binding.editTextContrasena.text.toString().trim()
+        val acepto_terminos = binding.cbAceptarTerminos.isChecked
 
-        if (nombreBinding.isNotEmpty() && mailBinding.isNotEmpty() &&contrasenaBinding.isNotEmpty() ){
-            Toast.makeText(this, "Bien" +
-                    "venida  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
+        val mail_valido = mail.contains("@") && mail.isNotBlank()
+
+        if (nombre.isNotBlank() && mail_valido && contrasena.length == 8 && acepto_terminos){
+            //shared  almacena  los datos
+            val preferences = getSharedPreferences("datos_personales", MODE_PRIVATE)
+            val edit = preferences.edit()
+
+            //recuperamos los datos
+            edit.putString("nombre", nombre)
+            edit.putString("mail", mail)
+            edit.putString("contrasena", contrasena)
+            edit.apply()
+
+
+            Toast.makeText(this, "Registro exitoso! $nombre",Toast.LENGTH_LONG).show()
+                    //  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
 
             val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra( "username",nombreBinding)
-            intent.putExtra( "mail",mailBinding)
-            intent.putExtra("usercontrasena", contrasenaBinding.toString())
+            intent.putExtra("nombre", nombre)
+            intent.putExtra("mail", mail)
+            intent.putExtra("contrasena", contrasena)
             startActivity(intent)
+            finish()
+
 
         } else {
             Toast.makeText(this, "¡Complete todos  los campos!",  Toast.LENGTH_LONG).show()
 
         }
+    }
+    // para acceder a las  variables
+    companion object {
+       val  CREDENCIALES = "datos_personales"
+
     }
 }
 
