@@ -2,8 +2,9 @@ package com.tapia.myapplication2025
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
-import android.widget.EditText
+import com.google.gson.Gson
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,7 @@ import com.tapia.myapplication2025.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding:  ActivityMainBinding  //relacionamos vista de login
+    private lateinit var binding: ActivityMainBinding  //relacionamos vista de login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState) //punto de partida oncreate
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater) //
         //setContentView(R.layout.activity_main)//relaciona la vista
         setContentView(binding.root)//relaciona directorio completo
-         // boton de acceso
+        // boton de acceso
         binding.botonacceso.setOnClickListener {
             validateData()
 
@@ -30,34 +31,80 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, RegistroActivity::class.java)
             startActivity(intent)
         }
+        Log.d("CiclosDeVida", "onCreate()")
 
     }
 
-    fun validateData () {
+    override fun onStart() {
+        super.onStart()
+        Log.d("CiclosDeVida", "onStart()")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("CiclosDeVida", "onResume()")
+        val preferences = getSharedPreferences(RegistroActivity.CREDENCIALES, MODE_PRIVATE)
+        val autoLogin = preferences.getBoolean("autoLogin", false)
+        val userData = preferences.getString("userData", null)
+
+
+        //Toast.makeText(this, "autoLogin={$autoLogin}", Toast.LENGTH_SHORT).show()
+
+        if (autoLogin == true) {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Log.d("CiclosDeVida", "onPause()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("CiclosDeVida", "onStop()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("CiclosDeVida", "onDestroy()")
+    }
+
+
+    fun validateData() {
         val nombreBinding = binding.editTextnombre.text.toString().trim()
         val contrasenaBinding = binding.editTextcontrasena.text.toString().trim()
 
-        if (nombreBinding.isNotBlank() && contrasenaBinding.isNotEmpty()){
-            val preferences = getSharedPreferences("CREDENCIALES", MODE_PRIVATE)
-            val edit = preferences.edit()
+        if (nombreBinding.isEmpty() || contrasenaBinding.isEmpty()) {
+            Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-            edit.putString("nombre", nombreBinding)
-            edit.putString("contrasena", contrasenaBinding)
-            edit.apply()
+        val preferences = getSharedPreferences(RegistroActivity.CREDENCIALES, MODE_PRIVATE)
+        val nombreInJsonFormat = preferences.getString("userData", null)
 
-            Toast.makeText(this, "Bievenida  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
+        if (nombreInJsonFormat == null) {
+            Toast.makeText(this, "Primero debes almacenar algún dato!", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val gson = Gson()
+        val user = gson.fromJson(nombreInJsonFormat, Usuario::class.java)
+        if (nombreBinding == user.nombre && contrasenaBinding == user.contrasena) {
+            val editor = preferences.edit()
+            editor.putBoolean("autoLogin", true)
+            editor.apply()
+
             val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra( "nombre",nombreBinding)
-            intent.putExtra("contrasena", contrasenaBinding.toString())
             startActivity(intent)
-            finish()
-
+            Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show()
         } else {
-            Toast.makeText(this, "¡Complete todos  los campos!",  Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Ingrese nuevamente!", Toast.LENGTH_LONG).show()
 
         }
-    }
-    companion object {
-        val CREDENCIALES = "CREDENCIALES"
     }
 }

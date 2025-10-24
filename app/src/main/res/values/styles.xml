@@ -9,4 +9,8 @@
         <item name="boxBackgroundColor">@android:color/transparent</item>  <!-- Fondo transparente -->
     </style>
 
+    <style name="MaterialAlertDialogo.Material3" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+
+    </style>
+
 </resources>

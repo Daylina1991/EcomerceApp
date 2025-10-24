@@ -3,6 +3,7 @@ package com.tapia.myapplication2025
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import com.google.gson.Gson
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -37,24 +38,22 @@ class RegistroActivity : AppCompatActivity() {
         val mail_valido = mail.contains("@") && mail.isNotBlank()
 
         if (nombre.isNotBlank() && mail_valido && contrasena.length == 8 && acepto_terminos){
-            //shared  almacena  los datos
-            val preferences = getSharedPreferences("datos_personales", MODE_PRIVATE)
-            val edit = preferences.edit()
+            val user = Usuario(nombre, mail, contrasena)
+             //convierteaJson
+            val gson = com.google.gson.Gson()
+            val json = gson.toJson(user)
 
-            //recuperamos los datos
-            edit.putString("nombre", nombre)
-            edit.putString("mail", mail)
-            edit.putString("contrasena", contrasena)
-            edit.apply()
+            val prefs = getSharedPreferences(CREDENCIALES, MODE_PRIVATE)
+            val editor = prefs.edit()
+            editor.putString("userData", json)
+            editor.putBoolean("autoLogin", true)
+            editor.apply()
 
 
             Toast.makeText(this, "Registro exitoso! $nombre",Toast.LENGTH_LONG).show()
                     //  $nombreBinding",  Toast.LENGTH_LONG).show()  //mensaje emergente
 
             val intent = Intent(this, HomeActivity::class.java)
-            intent.putExtra("nombre", nombre)
-            intent.putExtra("mail", mail)
-            intent.putExtra("contrasena", contrasena)
             startActivity(intent)
             finish()
 
