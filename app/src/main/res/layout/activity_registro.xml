@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Registro de Usuario"
         android:textSize="30sp"
-        android:textStyle="italic"
+        android:textStyle="bold"
         android:layout_marginBottom="80dp"
         android:layout_marginTop="50dp"
         android:textColor="@color/black"/>

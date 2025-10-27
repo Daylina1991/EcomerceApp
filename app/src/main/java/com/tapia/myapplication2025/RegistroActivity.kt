@@ -38,9 +38,9 @@ class RegistroActivity : AppCompatActivity() {
         val mail_valido = mail.contains("@") && mail.isNotBlank()
 
         if (nombre.isNotBlank() && mail_valido && contrasena.length == 8 && acepto_terminos){
+
             val user = Usuario(nombre, mail, contrasena)
-             //convierteaJson
-            val gson = com.google.gson.Gson()
+            val gson = Gson()
             val json = gson.toJson(user)
 
             val prefs = getSharedPreferences(CREDENCIALES, MODE_PRIVATE)

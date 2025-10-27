@@ -6,35 +6,59 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="HomeActivity">
+    tools:context=".HomeActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@android:color/black">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:background="@color/black"
-        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"/>
+        <!-- Toolbar superior -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/black"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <Button
-            android:id="@+id/btnSignOut"
-            android:layout_width="wrap_content"
+        <!-- Botón Salir alineado a la esquina superior derecha -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:backgroundTint="@color/black"
-            android:textColor="@color/white"
-            android:text="Salir"/>
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:padding="4dp">
 
+            <Button
+                android:id="@+id/salir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Salir"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/darker_gray"
+                android:padding="8dp"/>
+        </LinearLayout>
+
+        <!-- Contenido principal -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:id="@+id/contenedorProductos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </ScrollView>
     </LinearLayout>
 
-
+    <!-- Menú lateral -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navegation"
         android:layout_width="wrap_content"
@@ -42,11 +66,4 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header_home"
         app:menu="@menu/menu_navegation_home"/>
-
-
-
-
-
-
-
 </androidx.drawerlayout.widget.DrawerLayout>
