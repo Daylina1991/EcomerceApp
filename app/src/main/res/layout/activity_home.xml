@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:background="@android:color/black">
 
-        <!-- Toolbar superior -->
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -23,27 +23,8 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <!-- Botón Salir alineado a la esquina superior derecha -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:padding="4dp">
 
-            <Button
-                android:id="@+id/salir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Salir"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@android:color/darker_gray"
-                android:padding="8dp"/>
-        </LinearLayout>
 
-        <!-- Contenido principal -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -58,7 +39,7 @@
         </ScrollView>
     </LinearLayout>
 
-    <!-- Menú lateral -->
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navegation"
         android:layout_width="wrap_content"

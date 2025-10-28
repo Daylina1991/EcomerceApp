@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:hint="Nombre"
+        android:hint=" Nombre de usuario"
         app:startIconDrawable="@drawable/ic_person"
         style="@style/Widget.Custom.TextInputLayout">
 

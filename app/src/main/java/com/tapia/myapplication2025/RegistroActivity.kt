@@ -39,15 +39,17 @@ class RegistroActivity : AppCompatActivity() {
 
         if (nombre.isNotBlank() && mail_valido && contrasena.length == 8 && acepto_terminos){
 
-            val user = Usuario(nombre, mail, contrasena)
+            val usuario = Usuario(nombre, mail, contrasena)
+
             val gson = Gson()
-            val json = gson.toJson(user)
+            val json = gson.toJson(usuario)
 
             val prefs = getSharedPreferences(CREDENCIALES, MODE_PRIVATE)
-            val editor = prefs.edit()
+             val editor =prefs.edit()
             editor.putString("userData", json)
             editor.putBoolean("autoLogin", true)
             editor.apply()
+
 
 
             Toast.makeText(this, "Registro exitoso! $nombre",Toast.LENGTH_LONG).show()

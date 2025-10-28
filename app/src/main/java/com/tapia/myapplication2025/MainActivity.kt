@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         val preferences = getSharedPreferences(RegistroActivity.CREDENCIALES, MODE_PRIVATE)
         val autoLogin = preferences.getBoolean("autoLogin", false)
 
-        // Si ya está logueado, ir directo a HomeActivity
         if (autoLogin) {
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
@@ -79,21 +78,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         val preferences = getSharedPreferences(RegistroActivity.CREDENCIALES, MODE_PRIVATE)
-        val nombreInJsonFormat = preferences.getString("userData", null)
+        val userJson = preferences.getString("userData", null)
 
-        if (nombreInJsonFormat == null) {
+        if (userJson == null) {
             Toast.makeText(this, "Primero debes registrar un usuario!", Toast.LENGTH_LONG).show()
             return
         }
 
         val gson = Gson()
-        val user = gson.fromJson(nombreInJsonFormat, Usuario::class.java)
+        val usuario = gson.fromJson(userJson, Usuario::class.java)
 
-        if (nombreBinding == user.nombre && contrasenaBinding == user.contrasena) {
-            // Guardar autoLogin
+        if  (binding.editTextnombre.text.toString() == usuario.nombre &&
+            binding.editTextcontrasena.text.toString() == usuario.contrasena) {
+
             preferences.edit().putBoolean("autoLogin", true).apply()
 
-            // Ir a HomeActivity
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
         } else {
