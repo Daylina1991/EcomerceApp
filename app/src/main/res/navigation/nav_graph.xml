@@ -7,22 +7,24 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.tapia.myapplication2025.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:name="com.tapia.myapplication2025.ui.fragment.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_homeFragment_to_detalleProductoFragment"
+            app:destination="@id/detalleProductoFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.tapia.myapplication2025.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+    <fragment
+        android:id="@+id/detalleProductoFragment"
+        android:name="com.tapia.myapplication2025.ui.fragment.DetalleProductoFragment"
+        android:label="Detalle Producto"
+        tools:layout="@layout/fragment_detalle_producto">
+
+        <argument
+            android:name="producto"
+            app:argType="com.tapia.myapplication2025.model.Producto" />
     </fragment>
 </navigation>
+

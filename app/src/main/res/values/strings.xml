@@ -11,8 +11,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="boton_registrar_cuenta">Registrar Cuenta</string>
-    <string name="nav_drawer_home_open">Open</string>
-    <string name="nav_drawer_home_close">Close</string>
-
-
+    <string name="navegation_drawer_home_open">Abrir menú</string>
+    <string name="navigation_drawer_open">Abrir menú</string>
+    <string name="navigation_drawer_close">Cerrar menú</string>
 </resources>
