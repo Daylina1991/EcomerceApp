@@ -10,7 +10,7 @@
         app:iconifiedByDefault="false"/>
     <item
         android:id="@+id/action_cart"
-        android:icon="@drawable/ic_cart"
+        android:icon="@drawable/ic_add_shopping_cart"
         android:title="Carrito"
         app:iconTint="@color/white"
         app:showAsAction="ifRoom"/>

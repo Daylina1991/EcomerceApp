@@ -10,13 +10,16 @@ import com.tapia.myapplication2025.model.Producto
 
 @Dao
 interface ProductoDao {
+    @Query("SELECT * FROM producto")
+    fun getAll(): LiveData<List<Producto>>
+
     @Insert
     suspend fun insert(producto: Producto)
 
-    @Query("SELECT * FROM producto")
-    fun getAll(): LiveData<List<Producto>>
+
     @Delete
     suspend fun delete(producto: Producto)
+
     @Update
     suspend fun update(producto: Producto)
 }

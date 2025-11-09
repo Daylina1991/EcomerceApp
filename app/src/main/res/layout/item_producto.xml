@@ -1,39 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    cardview:cardCornerRadius="8dp"
-    cardview:cardElevation="4dp"
-    android:layout_margin="8dp">
-
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    android:background="@android:color/white">
 
     <LinearLayout
         android:orientation="vertical"
-        android:padding="8dp"
+        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Imagen del producto -->
+        <ImageView
+            android:id="@+id/item_imagen"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="8dp"
+            android:background="@color/fondoImagenClaro" />
+
+        <!-- Nombre del producto -->
         <TextView
-            android:id="@+id/nombreProducto"
+            android:id="@+id/item_nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_marginBottom="4dp" />
 
+        <!-- Categoría -->
         <TextView
-            android:id="@+id/categoriaProducto"
+            android:id="@+id/item_categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@android:color/darker_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_marginBottom="4dp" />
 
+        <!-- Precio -->
         <TextView
-            android:id="@+id/precioProducto"
+            android:id="@+id/item_precio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@android:color/holo_green_dark"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Botón Ver más -->
+        <Button
+            android:id="@+id/item_btn_ver_mas"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="VER MÁS"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_gravity="end" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

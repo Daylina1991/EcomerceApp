@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Estilo personalizado para los campos de entrada -->
+
     <style name="Widget.Custom.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/inputStrokeColor</item>         <!-- Color del borde activo -->
-        <item name="hintTextColor">@color/inputHintColor</item>            <!-- Color del hint -->
-        <item name="android:textColor">@color/inputTextColor</item>        <!-- Color del texto -->
-        <item name="boxBackgroundColor">@android:color/transparent</item>  <!-- Fondo transparente -->
+        <item name="boxStrokeColor">@color/inputStrokeColor</item>
+        <item name="hintTextColor">@color/inputHintColor</item>
+        <item name="android:textColor">@color/inputTextColor</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
     </style>
 
-    <style name="MaterialAlertDialogo.Material3" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+    <style name="MaterialAlertDialogo.Material3" parent="ThemeOverlay.Material3.MaterialAlertDialog" />
 
+    <style name="BotonVerMasEstilo" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorBotonVerMas</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="cornerRadius">16dp</item>
     </style>
 
 </resources>

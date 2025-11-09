@@ -1,55 +1,55 @@
-package com.tapia.myapplication2025.ui.fragment
+package com.tapia.myapplication2025.ui.view
 
 import android.os.Bundle
-import android.view.*
-import android.widget.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.tapia.myapplication2025.model.Producto
-import com.tapia.myapplication2025.ui.viewmodel.ProductoViewModel
 import androidx.navigation.fragment.findNavController
-import com.tapia.myapplication2025.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.tapia.myapplication2025.databinding.FragmentHomeBinding
+import com.tapia.myapplication2025.ui.adapter.ProductoAdapter
+import com.tapia.myapplication2025.ui.viewmodel.ProductoViewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var productoViewModel: ProductoViewModel
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val layout = LinearLayout(requireContext()).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(32, 32, 32, 32)
+    private lateinit var productoViewModel: ProductoViewModel
+    private lateinit var adapter: ProductoAdapter
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        productoViewModel = ViewModelProvider(requireActivity())[ProductoViewModel::class.java]
+
+        adapter = ProductoAdapter { producto ->
+            val action = HomeFragmentDirections
+                .actionHomeFragmentToDetalleProductoFragment(producto)
+            findNavController().navigate(action)
         }
 
-        productoViewModel = ViewModelProvider(this)[ProductoViewModel::class.java]
+        binding.recyclerProductos.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerProductos.adapter = adapter
 
         productoViewModel.productos.observe(viewLifecycleOwner) { productos ->
-            layout.removeAllViews()
-            productos.forEach { producto ->
-                val card = LinearLayout(requireContext()).apply {
-                    orientation = LinearLayout.VERTICAL
-                    setPadding(16, 16, 16, 16)
-                    setBackgroundResource(android.R.drawable.dialog_holo_light_frame)
-                }
-
-                val tv = TextView(requireContext()).apply {
-                    text = "${producto.nombre} - ${producto.precio}"
-                    textSize = 18f
-                }
-
-                val btnVerMas = Button(requireContext()).apply {
-                    text = "Ver más"
-                    setOnClickListener {
-                        val action = HomeFragmentDirections.actionHomeToDetalle(producto)
-                        findNavController().navigate(action)
-                    }
-                }
-
-                card.addView(tv)
-                card.addView(btnVerMas)
-                layout.addView(card)
-            }
+            adapter.submitList(productos)
         }
+    }
 
-        return layout
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

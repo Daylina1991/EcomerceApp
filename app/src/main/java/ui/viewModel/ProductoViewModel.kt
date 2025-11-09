@@ -13,11 +13,11 @@ class ProductoViewModel(application: Application) : AndroidViewModel(application
     private val productoDao = AppDatabase.getDatabase(application).productoDao()
     val productos: LiveData<List<Producto>> = productoDao.getAll()
 
+    // Simplificamos: no hacemos inserción automática aquí (la realiza HomeActivity con productosOriginales)
     fun agregar(producto: Producto) {
         viewModelScope.launch {
             productoDao.insert(producto)
         }
-
     }
 
     fun eliminar(producto: Producto) {
@@ -31,6 +31,4 @@ class ProductoViewModel(application: Application) : AndroidViewModel(application
             productoDao.update(producto)
         }
     }
-
 }
-

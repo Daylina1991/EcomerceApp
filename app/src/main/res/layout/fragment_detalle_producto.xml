@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Imagen del producto -->
+        <ImageView
+            android:id="@+id/ivImagenDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"
+            android:background="@color/fondoImagenClaro" />
+
+        <!-- Nombre del producto -->
+        <TextView
+            android:id="@+id/tvNombreDetalle"
+            android:text="Notebook HP 15"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Categoría -->
+        <TextView
+            android:id="@+id/tvCategoriaDetalle"
+            android:text="Notebooks"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp" />
+
+        <!-- Precio -->
+        <TextView
+            android:id="@+id/tvPrecioDetalle"
+            android:text="$150.500.000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Envío -->
+        <TextView
+            android:id="@+id/tvenvios"
+            android:text="Envío gratis"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Condición de envío -->
+        <TextView
+            android:id="@+id/tvEnvio"
+            android:text="COMPRA INTERNACIONAL"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Cantidad -->
+        <EditText
+            android:id="@+id/etCantidad"
+            android:hint="Stock disponible"
+            android:inputType="number"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Botones principales en fila -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnComprar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Comprar"
+                android:icon="@drawable/ic_payment"
+                android:iconTint="@android:color/white"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/black"
+                app:iconPadding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAgregarcarrito"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Agregar"
+                android:icon="@drawable/ic_add_shopping_cart"
+                android:iconTint="@android:color/white"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/black"
+                app:iconPadding="8dp"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Botones secundarios -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btneliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar producto"
+            android:icon="@drawable/ic_remove_shopping_cart"
+            android:iconTint="@color/rojoAccion"
+            android:textColor="@color/black"
+            android:strokeColor="@color/black"
+            android:strokeWidth="1"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEliminarCarrito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eliminar del carrito"
+            android:icon="@drawable/ic_remove_shopping_cart"
+            android:iconTint="@color/rojoAccion"
+            android:textColor="@color/black"
+            android:strokeColor="@color/black"
+            android:strokeWidth="1"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnvolveralhome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inicio"
+            android:icon="@drawable/ic_home"
+            android:iconTint="@color/black"
+            android:textColor="@color/black"
+            android:strokeColor="@color/black"
+            android:strokeWidth="1"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_marginBottom="48dp" />
+    </LinearLayout>
+</ScrollView>
