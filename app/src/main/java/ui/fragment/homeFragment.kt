@@ -8,14 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tapia.myapplication2025.databinding.FragmentHomeBinding
+import com.tapia.myapplication2025.databinding.FragmentRecyclerviewBinding
 import com.tapia.myapplication2025.ui.viewmodel.ProductoViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentRecyclerviewBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var productoViewModel: ProductoViewModel
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentRecyclerviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,8 +42,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = ProductoAdapter { producto ->
 
+        adapter = ProductoAdapter { producto ->
             val action = HomeFragmentDirections
                 .actionHomeFragmentToDetalleProductoFragment(producto)
             findNavController().navigate(action)
@@ -52,7 +52,6 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.recyclerProductos.layoutManager = GridLayoutManager(requireContext(), 2)
-
         binding.recyclerProductos.adapter = adapter
     }
 

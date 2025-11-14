@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tapia.myapplication2025.R
+import androidx.navigation.fragment.findNavController
 import com.tapia.myapplication2025.model.Producto
+import com.tapia.myapplication2025.ui.fragment.DetalleProductoFragment
 
 class ProductoAdapter(
     private val onClick: (Producto) -> Unit
@@ -29,8 +31,7 @@ class ProductoAdapter(
             tvCategoria.text = producto.categoria
             tvPrecio.text = "$${String.format("%.2f", producto.precio)}"
 
-            // Intentamos resolver por imagenNombre (persistida),
-            // sino por imagenResId (si está en memoria), sino fallback.
+
             val resIdFromName = if (producto.imagenNombre.isNotBlank()) {
                 itemView.context.resources.getIdentifier(
                     producto.imagenNombre, "drawable", itemView.context.packageName
@@ -42,19 +43,18 @@ class ProductoAdapter(
             val finalRes = when {
                 resIdFromName != 0 -> resIdFromName
                 producto.imagenResId != 0 -> producto.imagenResId
-                else -> R.drawable.imagen_no_disponible // asegurate que exista en res/drawable
+                else -> R.drawable.imagen_no_disponible
             }
 
             Log.d("ProductoAdapter", "bind -> ${producto.nombre} -> imagenNombre='${producto.imagenNombre}' resId=$finalRes")
             ivImagen.setImageResource(finalRes)
 
-            // CLICK DEL BOTÓN VER MÁS → llama al callback que navega en el fragmento
+            // CLICK DEL BOTÓN VER MÁS
             btnVerMas.setOnClickListener {
                 Log.d("ProductoAdapter", "Click VER MÁS -> ${producto.nombre}")
                 onClick(producto)
             }
 
-            // Al tocar toda la tarjeta también navega
             itemView.setOnClickListener {
                 onClick(producto)
             }

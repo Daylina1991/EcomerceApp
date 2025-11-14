@@ -21,7 +21,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var productoViewModel: ProductoViewModel
     private lateinit var toggle: ActionBarDrawerToggle
 
-    // Cache local para filtrar sin perder la lista original
+
     private var productosCache: List<Producto> = emptyList()
 
     private val productosOriginales = listOf(
@@ -47,11 +47,11 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // toolbar
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        // Drawer toggle como propiedad para poder usarlo también en onOptionsItemSelected
+
         toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
@@ -63,14 +63,14 @@ class HomeActivity : AppCompatActivity() {
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Navigation view listener: cierra el drawer y maneja logout
+
         binding.navegation.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_logout -> {
                     val prefs: SharedPreferences = getSharedPreferences(RegistroActivity.CREDENCIALES, MODE_PRIVATE)
                     prefs.edit().putBoolean("autoLogin", false).apply()
 
-                    // cerrar drawer y navegar a MainActivity
+
                     binding.drawerLayout.closeDrawers()
                     val intent = Intent(this, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -85,32 +85,29 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // ViewModel y adapter
+
         productoViewModel = ViewModelProvider(this)[ProductoViewModel::class.java]
         val adapter = ProductoAdapter { producto ->
-            // acción al click: si querés, abrir detalle
+
         }
         binding.recyclerProductos.layoutManager = LinearLayoutManager(this)
         binding.recyclerProductos.adapter = adapter
 
-        // SharedPreferences para controlar primera inserción
+
         val prefs: SharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
         val yaInsertados = prefs.getBoolean("productosInsertados", false)
 
-        // Observamos LiveData de productos
+
         productoViewModel.productos.observe(this) { productos ->
-            // Si no hay productos en DB y no los insertamos antes, insertar.
-            // IMPORTANTE: guardamos el flag ANTES de insertar para evitar reentradas del observer.
             if (productos.isEmpty() && !yaInsertados) {
                 prefs.edit().putBoolean("productosInsertados", true).apply()
                 for (producto in productosOriginales) {
                     productoViewModel.agregar(producto)
                 }
-                return@observe // salimos para que la UI espere al siguiente cambio
+                return@observe
             }
 
-            // Creamos lista con resource ids según nombre (si tu Producto ya tiene imagenResId en DB,
-            // este mapeo podría no ser necesario)
+
             val productosConImagen = productos.map { producto ->
                 val imagen = when (producto.nombre) {
                     "Notebook HP 15" -> R.drawable.laptop
@@ -166,10 +163,10 @@ class HomeActivity : AppCompatActivity() {
                 return true
             }
         })
-        return true // devolver true para mostrar el menú
+        return true
     }
 
-    // Filtrado simple: por nombre o categoría
+
     private fun filterProductos(text: String?) {
         val query = text?.trim()?.lowercase() ?: ""
         val adapter = binding.recyclerProductos.adapter as? ProductoAdapter ?: return
