@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.IgnoredOnParcel
 import androidx.room.Ignore
 
 @Parcelize
@@ -14,15 +15,9 @@ data class Producto(
     val categoria: String,
     val precio: Double,
     val descripcion: String,
-
-    @Ignore
-    val imagenResId: Int = 0
+    val imagenNombre: String = "" // <- valor por defecto
 ) : Parcelable {
-    constructor(
-        id: Int,
-        nombre: String,
-        categoria: String,
-        precio: Double,
-        descripcion: String
-    ) : this(id, nombre, categoria, precio, descripcion, 0)
+    @Ignore
+    @IgnoredOnParcel // evita que Parcelize intente serializar esta propiedad
+    var imagenResId: Int = 0
 }

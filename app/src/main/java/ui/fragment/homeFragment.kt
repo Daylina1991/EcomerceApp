@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tapia.myapplication2025.databinding.FragmentHomeBinding
-import com.tapia.myapplication2025.ui.adapter.ProductoAdapter
+import com.tapia.myapplication2025.ui.view.ProductoAdapter
 import com.tapia.myapplication2025.ui.viewmodel.ProductoViewModel
 
 class HomeFragment : Fragment() {

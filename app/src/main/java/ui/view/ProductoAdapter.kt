@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tapia.myapplication2025.R
 import com.tapia.myapplication2025.model.Producto
+import androidx.room.Ignore
+
 
 class ProductoAdapter(
     private val onClick: (Producto) -> Unit
@@ -31,8 +33,7 @@ class ProductoAdapter(
             val resId = itemView.context.resources.getIdentifier(
                 producto.imagenNombre, "drawable", itemView.context.packageName
             )
-            ivImagen.setImageResource(resId)
-
+            ivImagen.setImageResource(if (resId != 0) resId else R.drawable.laptop)
             btnVerMas.setOnClickListener {
                 onClick(producto)
             }
