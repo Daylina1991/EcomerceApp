@@ -1,5 +1,6 @@
 package com.tapia.myapplication2025.ui.view
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +12,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tapia.myapplication2025.R
 import com.tapia.myapplication2025.model.Producto
-import androidx.room.Ignore
-
 
 class ProductoAdapter(
     private val onClick: (Producto) -> Unit
@@ -28,13 +27,35 @@ class ProductoAdapter(
         fun bind(producto: Producto) {
             tvNombre.text = producto.nombre
             tvCategoria.text = producto.categoria
-            tvPrecio.text = "$${producto.precio}"
+            tvPrecio.text = "$${String.format("%.2f", producto.precio)}"
 
-            val resId = itemView.context.resources.getIdentifier(
-                producto.imagenNombre, "drawable", itemView.context.packageName
-            )
-            ivImagen.setImageResource(if (resId != 0) resId else R.drawable.laptop)
+            // Intentamos resolver por imagenNombre (persistida),
+            // sino por imagenResId (si está en memoria), sino fallback.
+            val resIdFromName = if (producto.imagenNombre.isNotBlank()) {
+                itemView.context.resources.getIdentifier(
+                    producto.imagenNombre, "drawable", itemView.context.packageName
+                )
+            } else {
+                0
+            }
+
+            val finalRes = when {
+                resIdFromName != 0 -> resIdFromName
+                producto.imagenResId != 0 -> producto.imagenResId
+                else -> R.drawable.imagen_no_disponible // asegurate que exista en res/drawable
+            }
+
+            Log.d("ProductoAdapter", "bind -> ${producto.nombre} -> imagenNombre='${producto.imagenNombre}' resId=$finalRes")
+            ivImagen.setImageResource(finalRes)
+
+            // CLICK DEL BOTÓN VER MÁS → llama al callback que navega en el fragmento
             btnVerMas.setOnClickListener {
+                Log.d("ProductoAdapter", "Click VER MÁS -> ${producto.nombre}")
+                onClick(producto)
+            }
+
+            // Al tocar toda la tarjeta también navega
+            itemView.setOnClickListener {
                 onClick(producto)
             }
         }

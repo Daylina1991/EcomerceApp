@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Imagen del producto -->
+
         <ImageView
             android:id="@+id/ivImagenDetalle"
             android:layout_width="match_parent"
@@ -19,7 +19,6 @@
             android:layout_marginBottom="16dp"
             android:background="@color/fondoImagenClaro" />
 
-        <!-- Nombre del producto -->
         <TextView
             android:id="@+id/tvNombreDetalle"
             android:text="Notebook HP 15"
@@ -30,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp" />
 
-        <!-- Categoría -->
+
         <TextView
             android:id="@+id/tvCategoriaDetalle"
             android:text="Notebooks"
@@ -40,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp" />
 
-        <!-- Precio -->
+
         <TextView
             android:id="@+id/tvPrecioDetalle"
             android:text="$150.500.000"
@@ -51,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp" />
 
-        <!-- Envío -->
+
         <TextView
             android:id="@+id/tvenvios"
             android:text="Envío gratis"
@@ -61,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp" />
 
-        <!-- Condición de envío -->
+
         <TextView
             android:id="@+id/tvEnvio"
             android:text="COMPRA INTERNACIONAL"
@@ -71,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp" />
 
-        <!-- Cantidad -->
+
         <EditText
             android:id="@+id/etCantidad"
             android:hint="Stock disponible"
@@ -82,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp" />
 
-        <!-- Botones principales en fila -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,7 +117,7 @@
                 android:layout_marginStart="8dp" />
         </LinearLayout>
 
-        <!-- Botones secundarios -->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btneliminar"
             android:layout_width="match_parent"

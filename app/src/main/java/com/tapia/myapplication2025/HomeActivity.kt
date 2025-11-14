@@ -25,21 +25,21 @@ class HomeActivity : AppCompatActivity() {
     private var productosCache: List<Producto> = emptyList()
 
     private val productosOriginales = listOf(
-        Producto(0, "Notebook HP 15", "Notebooks", 699999.0, "Notebook HP con pantalla de 15 pulgadas y procesador Intel.").apply { imagenResId = R.drawable.laptop },
-        Producto(0, "Mouse Logitech G203", "Periféricos", 18999.0, "Mouse gamer con luces RGB y alta precisión.").apply { imagenResId = R.drawable.mouse },
-        Producto(0, "Monitor Samsung 24'' Full HD", "Monitores", 120000.0, "Monitor curvo para mayor inmersión").apply { imagenResId = R.drawable.monitor_samsung },
-        Producto(0, "Teclado Mecánico Redragon", "Periféricos", 34000.0, "Teclado mecánico con switches rojos").apply { imagenResId = R.drawable.teclado_mecanico },
-        Producto(0, "Auriculares HyperX Cloud", "Audio", 56000.0, "Auriculares con sonido envolvente").apply { imagenResId = R.drawable.auricular_hyperx },
-        Producto(0, "Webcam Logitech C920", "Periféricos", 42000.0, "Webcam HD para videollamadas").apply { imagenResId = R.drawable.webcam },
-        Producto(0, "Disco SSD 1TB", "Almacenamiento", 95000.0, "Disco sólido de 1TB para alto rendimiento").apply { imagenResId = R.drawable.disco_duro },
-        Producto(0, "Teclado Mecánico Redragon Kumara K552", "Periféricos", 35000.0, "Teclado mecánico con switches rojos").apply { imagenResId = R.drawable.teclado_mecanico },
-        Producto(0, "Mouse Gamer Logitech G203", "Periféricos", 18000.0, "Mouse gamer con sensor preciso").apply { imagenResId = R.drawable.mouse_gamer },
-        Producto(0, "Monitor Samsung 24'' Curvo", "Monitor", 95000.0, "Monitor curvo para mayor inmersión").apply { imagenResId = R.drawable.monitor_samsung },
-        Producto(0, "Auriculares HyperX Cloud II", "Audio", 72000.0, "Versión mejorada con sonido 7.1").apply { imagenResId = R.drawable.auricular_hyperx },
-        Producto(0, "Notebook HP Pavilion 15", "Computadoras", 680000.0, "Notebook potente para productividad").apply { imagenResId = R.drawable.laptop_dell },
-        Producto(0, "Disco SSD Kingston 480GB", "Almacenamiento", 42000.0, "Disco sólido de alto rendimiento").apply { imagenResId = R.drawable.disco_duro },
-        Producto(0, "Impresora Epson EcoTank L3250", "Impresoras", 210000.0, "Impresora con sistema de tinta continua").apply { imagenResId = R.drawable.impresora_epson },
-        Producto(0, "Laptop Dell Inspiron 14", "Notebooks", 650000.0, "Laptop liviana y eficiente").apply { imagenResId = R.drawable.laptop_dell }
+        Producto(0, "Notebook HP 15", "Notebooks", 699999.0, "Notebook HP con pantalla de 15 pulgadas y procesador Intel.", "laptop"),
+        Producto(0, "Mouse Logitech G203", "Periféricos", 18999.0, "Mouse gamer con luces RGB y alta precisión.", "mouse"),
+        Producto(0, "Monitor Samsung 24'' Full HD", "Monitores", 120000.0, "Monitor curvo para mayor inmersión", "monitor_samsung"),
+        Producto(0, "Teclado Mecánico Redragon", "Periféricos", 34000.0, "Teclado mecánico con switches rojos", "teclado_mecanico"),
+        Producto(0, "Auriculares HyperX Cloud", "Audio", 56000.0, "Auriculares con sonido envolvente", "auricular_hyperx"),
+        Producto(0, "Webcam Logitech C920", "Periféricos", 42000.0, "Webcam HD para videollamadas", "webcam"),
+        Producto(0, "Disco SSD 1TB", "Almacenamiento", 95000.0, "Disco sólido de 1TB para alto rendimiento", "disco_duro"),
+        Producto(0, "Teclado Mecánico Redragon Kumara K552", "Periféricos", 35000.0, "Teclado mecánico con switches rojos", "teclado_mecanico"),
+        Producto(0, "Mouse Gamer Logitech G203", "Periféricos", 18000.0, "Mouse gamer con sensor preciso", "mouse_gamer"),
+        Producto(0, "Monitor Samsung 24'' Curvo", "Monitor", 95000.0, "Monitor curvo para mayor inmersión", "monitor_samsung"),
+        Producto(0, "Auriculares HyperX Cloud II", "Audio", 72000.0, "Versión mejorada con sonido 7.1", "auricular_hyperx"),
+        Producto(0, "Notebook HP Pavilion 15", "Computadoras", 680000.0, "Notebook potente para productividad", "laptop_dell"),
+        Producto(0, "Disco SSD Kingston 480GB", "Almacenamiento", 42000.0, "Disco sólido de alto rendimiento", "disco_duro"),
+        Producto(0, "Impresora Epson EcoTank L3250", "Impresoras", 210000.0, "Impresora con sistema de tinta continua", "impresora_epson"),
+        Producto(0, "Laptop Dell Inspiron 14", "Notebooks", 650000.0, "Laptop liviana y eficiente", "laptop_dell")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,17 +130,17 @@ class HomeActivity : AppCompatActivity() {
                     "Laptop Dell Inspiron 14" -> R.drawable.laptop_dell
                     else -> R.drawable.imagen_no_disponible
                 }
-                // No usamos copy() porque imagenResId NO está en el constructor primario.
+
                 producto.apply { imagenResId = imagen }
             }
 
-            // Guardamos en cache local y actualizamos adapter
+
             productosCache = productosConImagen
             adapter.submitList(productosConImagen)
         }
     }
 
-    // Manejar toggle del drawer
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)) {
             return true
@@ -156,7 +156,7 @@ class HomeActivity : AppCompatActivity() {
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                // opcional: ocultar teclado o buscar por submit
+
                 filterProductos(query)
                 return true
             }
@@ -169,7 +169,7 @@ class HomeActivity : AppCompatActivity() {
         return true // devolver true para mostrar el menú
     }
 
-    // Filtrado simple: por nombre o categoría (case-insensitive)
+    // Filtrado simple: por nombre o categoría
     private fun filterProductos(text: String?) {
         val query = text?.trim()?.lowercase() ?: ""
         val adapter = binding.recyclerProductos.adapter as? ProductoAdapter ?: return

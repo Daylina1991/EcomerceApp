@@ -9,8 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tapia.myapplication2025.databinding.FragmentHomeBinding
-import com.tapia.myapplication2025.ui.view.ProductoAdapter
 import com.tapia.myapplication2025.ui.viewmodel.ProductoViewModel
+import androidx.recyclerview.widget.GridLayoutManager
+
 
 class HomeFragment : Fragment() {
 
@@ -32,18 +33,32 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         productoViewModel = ViewModelProvider(requireActivity())[ProductoViewModel::class.java]
 
+        setupAdapter()
+        setupRecyclerView()
+        observeProductos()
+    }
+
+    private fun setupAdapter() {
         adapter = ProductoAdapter { producto ->
+
             val action = HomeFragmentDirections
                 .actionHomeFragmentToDetalleProductoFragment(producto)
             findNavController().navigate(action)
         }
+    }
 
-        binding.recyclerProductos.layoutManager = LinearLayoutManager(requireContext())
+    private fun setupRecyclerView() {
+        binding.recyclerProductos.layoutManager = GridLayoutManager(requireContext(), 2)
+
         binding.recyclerProductos.adapter = adapter
+    }
 
+    private fun observeProductos() {
         productoViewModel.productos.observe(viewLifecycleOwner) { productos ->
+
             adapter.submitList(productos)
         }
     }
@@ -53,3 +68,4 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 }
+

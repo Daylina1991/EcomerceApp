@@ -18,7 +18,7 @@ class DetalleProductoFragment : Fragment() {
 
     private val args: DetalleProductoFragmentArgs by navArgs()
 
-    // Referencias de vista (se limpian en onDestroyView)
+
     private var rootLayout: LinearLayout? = null
     private var imagenView: ImageView? = null
     private var tvNombre: TextView? = null
@@ -27,7 +27,7 @@ class DetalleProductoFragment : Fragment() {
     private var btnAgregar: MaterialButton? = null
 
     override fun onCreateView(inflater: android.view.LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): android.view.View? {
-        // Creamos el layout programáticamente (no depende de XML)
+
         val contexto = requireContext()
         val padding = (16 * resources.displayMetrics.density).toInt()
 
@@ -61,7 +61,7 @@ class DetalleProductoFragment : Fragment() {
             text = "Agregar al carrito"
         }
 
-        // Añadimos las vistas al layout
+
         rootLayout?.apply {
             addView(imagenView)
             addView(tvNombre)
@@ -79,7 +79,7 @@ class DetalleProductoFragment : Fragment() {
         val producto = args.producto
         Log.d("DetalleProducto", "Producto recibido: id=${producto.id}, nombre=${producto.nombre}, imagenResId=${producto.imagenResId}")
 
-        // Carga segura de imagen
+
         try {
             val resId = producto.imagenResId
             if (resId != 0) {
@@ -102,7 +102,7 @@ class DetalleProductoFragment : Fragment() {
             imagenView?.setImageResource(android.R.drawable.ic_menu_report_image)
         }
 
-        // Seteos texto
+
         tvNombre?.text = producto.nombre
         tvPrecio?.text = "$${String.format("%.2f", producto.precio)}"
         tvDescripcion?.text = producto.descripcion
@@ -113,7 +113,7 @@ class DetalleProductoFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        // Limpiar referencias para evitar leaks
+
         rootLayout = null
         imagenView = null
         tvNombre = null
